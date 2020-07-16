@@ -10,7 +10,10 @@ public class Main {
         // write your code here
         //maps
         Maps map = new Maps();
+        //map1
         String[][] stage = map.map1;
+
+        int stageNumber = 1;
 
         //player
         Player player = new Player();
@@ -58,8 +61,8 @@ public class Main {
         };
 
         //playerPosition
-        int positonX = 0;
-        int positonY = 0;
+        int positonX = 1;
+        int positonY = 1;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -74,26 +77,72 @@ public class Main {
             System.out.println("");
         }
 
-//
-
         while (true){
             System.out.println("コマンドを入力:");
             String key = scanner.next();
+            stage[positonY][positonX] = " ";
             switch (key){
                 case "w":
                     positonY--;
+                    if(positonY <= 1){
+                        System.out.println("範囲外です");
+                        positonY ++;
+                    }
                     break;
                 case "a":
                     positonX --;
+                    if(positonX <= 1){
+                        System.out.println("範囲外です");
+                        positonX ++;
+                    }
                     break;
                 case "s":
                     positonY ++;
+                    if(positonY >= 6){
+                        System.out.println("範囲外です");
+                        positonY --;
+                    }
                     break;
                 case "d":
                     positonX ++;
+                    if(positonX >= 11){
+                        System.out.println("範囲外です");
+                        positonX --;
+                    }
                     break;
                 default:
                     return;
+            }
+            if(stage[positonY][positonX] == "G"){
+                stageNumber ++;
+                switch (stageNumber){
+                    case 2:
+                        stage = map.map2;
+                        break;
+                    case 3:
+                        stage = map.map3;
+                        break;
+                    case 4:
+                        stage = map.map4;
+                        break;
+                    case 5:
+                        stage = map.map5;
+                        break;
+                    case 6:
+                        stage = map.map6;
+                    case 7:
+                        stage = map.map7;
+                        break;
+                    case 8:
+                        stage = map.map8;
+                        break;
+                    case 9:
+                        stage = map.map9;
+                        break;
+                }
+
+                positonX = 1;
+                positonY = 1;
             }
             creatMap(stage,positonY,positonX);
         }
