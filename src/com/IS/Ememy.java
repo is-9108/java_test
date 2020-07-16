@@ -6,3 +6,4 @@ public class Ememy {
     int exp;
     String[] art;
 }
+

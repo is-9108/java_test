@@ -1,7 +1,5 @@
 package com.IS;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.Scanner;
 
 public class Main {
@@ -55,8 +53,8 @@ public class Main {
                 "     #     ",
                 "   #   #   ",
                 " ##     ## ",
-                "#   #  #  #",
-                " #   ##  # ",
+                "#   # #   #",
+                " #   #   # ",
                 "   #####   "
         };
 
@@ -110,8 +108,11 @@ public class Main {
                         positonX --;
                     }
                     break;
-                default:
+                case "f":
                     return;
+                default:
+                    System.out.println("easd");
+                    break;
             }
             if(stage[positonY][positonX] == "G"){
                 stageNumber ++;
@@ -139,6 +140,12 @@ public class Main {
                     case 9:
                         stage = map.map9;
                         break;
+                    case 10:
+                        System.out.println("FIN");
+                        return;
+                    default:
+                        System.out.println("ERROR");
+                        return;
                 }
 
                 positonX = 1;
