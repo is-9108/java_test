@@ -1,38 +1,28 @@
 package com.IS;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here
+
         //maps
         Maps map = new Maps();
-        //map1
         String[][] stage = map.map1;
-
         int stageNumber = 1;
+        //maps
 
         //player
         Player player = new Player();
         player.hitPoint = 10;
         player.attack = 10;
         player.heal = 5;
+        player.exp = 0;
         player.items = new String[]{
-                "1:",
-                "2:",
-                "3:",
-                "4:",
-                "5:",
-                "6:",
-                "7:",
-                "8:",
-                "9:",
-                "10:"
+
         };
         player.weapon = "なし";
-
-        //weapon
         if (player.weapon == "なし") {
             player.attack += 0;
         } else if (player.weapon == "剣") {
@@ -41,6 +31,7 @@ public class Main {
             player.attack += 20;
             player.hitPoint -= 10;
         }
+        //player
 
 
         //enemy
@@ -49,24 +40,14 @@ public class Main {
         slime.name = "slime";
         slime.hitPoint = 10;
         slime.exp = 10;
-        slime.art = new String[]{
-                "     #     ",
-                "   #   #   ",
-                " ##     ## ",
-                "#   # #   #",
-                " #   #   # ",
-                "   #####   "
-        };
+        //enemy
 
-        //playerPosition
+        //command
         int positonX = 1;
         int positonY = 1;
-
         Scanner scanner = new Scanner(System.in);
-
-
-
         stage[positonY][positonX] = "P";
+        //command
 
         for(int i = 0; i < stage.length; i++) {
             for (int j = 0; j < stage[i].length; j++) {
@@ -79,9 +60,17 @@ public class Main {
             System.out.println("コマンドを入力:");
             String key = scanner.next();
             stage[positonY][positonX] = " ";
+            Random random = new Random();
+            int ran = random.nextInt(10);
             switch (key){
                 case "w":
                     positonY--;
+                    if(ran < 3){
+                        System.out.println("敵が現れた");
+
+                    }else{
+                        System.out.println(ran);
+                    }
                     if(positonY <= 1){
                         System.out.println("範囲外です");
                         positonY ++;
@@ -89,6 +78,11 @@ public class Main {
                     break;
                 case "a":
                     positonX --;
+                    if(ran < 3){
+                        System.out.println("敵が現れた");
+                    }else{
+                        System.out.println(ran);
+                    }
                     if(positonX <= 1){
                         System.out.println("範囲外です");
                         positonX ++;
@@ -96,6 +90,11 @@ public class Main {
                     break;
                 case "s":
                     positonY ++;
+                    if(ran < 3){
+                        System.out.println("敵が現れた");
+                    }else{
+                        System.out.println(ran);
+                    }
                     if(positonY >= 6){
                         System.out.println("範囲外です");
                         positonY --;
@@ -103,6 +102,11 @@ public class Main {
                     break;
                 case "d":
                     positonX ++;
+                    if(ran < 3){
+                        System.out.println("敵が現れた");
+                    }else{
+                        System.out.println(ran);
+                    }
                     if(positonX >= 11){
                         System.out.println("範囲外です");
                         positonX --;
@@ -166,4 +170,62 @@ public class Main {
             System.out.println("");
         }
     }
+
+    public static int battle(int heroHP,int heroAttack,int heroHeal,String[] heroItems,int heroExp,int enemyHP,int enemyAttack,String enemyName,int enemyExp){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("敵が現れた");
+        while (heroHP <= 0){
+            System.out.println("コマンドを入力:");
+            String key = scanner.next();
+            switch (key){
+                case "a":
+                    System.out.println("主人公の攻撃");
+                    enemyHP -= heroAttack;
+                    if(enemyHP <= 0){
+                        System.out.println("敵を倒した");
+                        System.out.println(enemyExp + "ポイント経験値を得た");
+                        heroExp += enemyExp;
+                    }else if(enemyHP > 0){
+                        System.out.println("敵の攻撃");
+                        System.out.println(enemyAttack + "ダメージ受けた");
+                        heroHP -= enemyAttack;
+                        if(heroHP <= 0){
+                            System.out.println("Game over");
+                        }
+                    }
+                    break;
+                case "h":
+                    for(int i = 0;i < heroItems.length; i++){
+                        System.out.println(i + ":");
+                        System.out.println(heroItems[i]);
+                    }
+                    int command = scanner.nextInt();
+                    System.out.println("番号を入力して下さい");
+                    switch (command){
+                        case 1:
+                            heroItems[0] = "";
+                            break;
+                        case 2:
+                            heroItems[1] = "";
+                            break;
+                        case 3:
+                            heroItems[2] = "";
+                            break;
+                        case 4:
+                            heroItems[3] = "";
+                            break;
+                        case 5:
+                            heroItems[4] = "";
+                            break;
+                        default:
+                            break;
+                    }
+            }
+
+        }
+        return heroExp;
+    }
+
+
+
 }

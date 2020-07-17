@@ -6,4 +6,7 @@ public class Player {
     String[] items = {};
     int heal;
     String weapon;
+    int exp;
 }
+
+
