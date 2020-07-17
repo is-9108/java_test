@@ -9,10 +9,8 @@ public class Move {
         int stageNumber = 1;
 
         Maps map = new Maps();
-
-        Battle battle = new Battle();
-
         Player player = new Player();
+        Battle battle = new Battle();
 
 
         Ememy slime = new Ememy();
@@ -32,7 +30,7 @@ public class Move {
                     positonY--;
                     if(ran < 3){
                         System.out.println("敵が現れた");
-                        battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        player = battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -45,7 +43,7 @@ public class Move {
                     positonX --;
                     if(ran < 3){
                         System.out.println("敵が現れた");
-                        battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        player = battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -58,7 +56,7 @@ public class Move {
                     positonY ++;
                     if(ran < 3){
                         System.out.println("敵が現れた");
-                        battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        player = battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -71,7 +69,7 @@ public class Move {
                     positonX ++;
                     if(ran < 3){
                         System.out.println("敵が現れた");
-                        battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        player = battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
