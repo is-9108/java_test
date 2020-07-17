@@ -40,6 +40,7 @@ public class Main {
         slime.name = "slime";
         slime.hitPoint = 10;
         slime.exp = 10;
+        slime.attack = 10;
         //enemy
 
         //command
@@ -67,7 +68,8 @@ public class Main {
                     positonY--;
                     if(ran < 3){
                         System.out.println("敵が現れた");
-
+                        player.exp = battle(player.hitPoint,player.attack,player.heal,player.items,
+                                player.exp,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -80,6 +82,8 @@ public class Main {
                     positonX --;
                     if(ran < 3){
                         System.out.println("敵が現れた");
+                        player.exp = battle(player.hitPoint,player.attack,player.heal,player.items,
+                                player.exp,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -92,6 +96,8 @@ public class Main {
                     positonY ++;
                     if(ran < 3){
                         System.out.println("敵が現れた");
+                        player.exp = battle(player.hitPoint,player.attack,player.heal,player.items,
+                                player.exp,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -104,6 +110,8 @@ public class Main {
                     positonX ++;
                     if(ran < 3){
                         System.out.println("敵が現れた");
+                        player.exp = battle(player.hitPoint,player.attack,player.heal,player.items,
+                                player.exp,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -116,6 +124,7 @@ public class Main {
                     return;
                 default:
                     System.out.println("easd");
+                    System.out.println(player.exp);
                     break;
             }
             if(stage[positonY][positonX] == "G"){
@@ -171,10 +180,11 @@ public class Main {
         }
     }
 
-    public static int battle(int heroHP,int heroAttack,int heroHeal,String[] heroItems,int heroExp,int enemyHP,int enemyAttack,String enemyName,int enemyExp){
+    public static int battle(int heroHP,int heroAttack,int heroHeal,String[] heroItems,
+                             int heroExp,int enemyHP,int enemyAttack,String enemyName,int enemyExp){
         Scanner scanner = new Scanner(System.in);
         System.out.println("敵が現れた");
-        while (heroHP <= 0){
+        while (heroHP >= 0){
             System.out.println("コマンドを入力:");
             String key = scanner.next();
             switch (key){
@@ -185,6 +195,7 @@ public class Main {
                         System.out.println("敵を倒した");
                         System.out.println(enemyExp + "ポイント経験値を得た");
                         heroExp += enemyExp;
+                        return heroExp;
                     }else if(enemyHP > 0){
                         System.out.println("敵の攻撃");
                         System.out.println(enemyAttack + "ダメージ受けた");

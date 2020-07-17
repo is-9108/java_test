@@ -4,5 +4,6 @@ public class Ememy {
     String name;
     int hitPoint;
     int exp;
+    int attack;
 }
 
