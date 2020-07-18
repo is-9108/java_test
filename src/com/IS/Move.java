@@ -1,5 +1,6 @@
 package com.IS;
 
+import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -220,6 +221,7 @@ public class Move {
     public static void creatMap(String[][] map, int positionY, int positionX) {
         String[][] stage = map;
         stage[positionY][positionX] = "P";
+        System.out.println("\033[2J");
         for (int i = 0; i < stage.length; i++) {
             for (int j = 0; j < stage[i].length; j++) {
                 System.out.print(stage[i][j]);
