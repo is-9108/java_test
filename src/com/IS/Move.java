@@ -7,7 +7,7 @@ public class Move {
     public static void move(String[][] stage,int positonY,int positonX){
         Scanner scanner = new Scanner(System.in);
         int stageNumber = 1;
-
+        boolean seihai = false;
         Maps map = new Maps();
         Player player = new Player();
         Battle battle = new Battle();
@@ -27,33 +27,47 @@ public class Move {
             switch (key){
                 case "w":
                     positonY--;
-                    if(ran < 3){
+                    System.out.println("x:" + positonX);
+                    System.out.println("y:" + positonY);
+                    if(ran < 0){
                         System.out.println("敵が現れた");
                         player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
-                    if(positonY <= 1){
+                    if(positonY < 1){
                         System.out.println("範囲外です");
+                        positonY ++;
+                    }
+                    if(stage[positonY][positonX] == "|" || stage[positonY][positonX] == "-"){
+                        System.out.println("行き止まりです");
                         positonY ++;
                     }
                     break;
                 case "a":
                     positonX --;
-                    if(ran < 3){
+                    System.out.println("x:" + positonX);
+                    System.out.println("y:" + positonY);
+                    if(ran < 0){
                         System.out.println("敵が現れた");
                         player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
-                    if(positonX <= 1){
+                    if(positonX < 1){
                         System.out.println("範囲外です");
+                        positonX ++;
+                    }
+                    if(stage[positonY][positonX] == "|" || stage[positonY][positonX] == "-"){
+                        System.out.println("行き止まりです");
                         positonX ++;
                     }
                     break;
                 case "s":
                     positonY ++;
-                    if(ran < 3){
+                    System.out.println("x:" + positonX);
+                    System.out.println("y:" + positonY);
+                    if(ran < 0){
                         System.out.println("敵が現れた");
                         player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
@@ -63,10 +77,16 @@ public class Move {
                         System.out.println("範囲外です");
                         positonY --;
                     }
+                    if(stage[positonY][positonX] == "|" || stage[positonY][positonX] == "-"){
+                        System.out.println("行き止まりです");
+                        positonY --;
+                    }
                     break;
                 case "d":
                     positonX ++;
-                    if(ran < 3){
+                    System.out.println("x:" + positonX);
+                    System.out.println("y:" + positonY);
+                    if(ran < 0){
                         System.out.println("敵が現れた");
                         player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
@@ -74,6 +94,10 @@ public class Move {
                     }
                     if(positonX >= 11){
                         System.out.println("範囲外です");
+                        positonX --;
+                    }
+                    if(stage[positonY][positonX] == "|" || stage[positonY][positonX] == "-"){
+                        System.out.println("行き止まりです");
                         positonX --;
                     }
                     break;
@@ -107,25 +131,88 @@ public class Move {
                         break;
                     case 6:
                         stage = map.map6;
-                    case 7:
-                        stage = map.map7;
-                        break;
-                    case 8:
-                        stage = map.map8;
-                        break;
-                    case 9:
-                        stage = map.map9;
-                        break;
-                    case 10:
-                        System.out.println("FIN");
-                        return;
+//                    case 7:
+//                        stage = map.map7;
+//                        break;
+//                    case 8:
+//                        stage = map.map8;
+//                        break;
+//                    case 9:
+//                        stage = map.map9;
+//                        break;
+//                    case 10:
+//                        System.out.println("FIN");
+//                        return;
                     default:
                         System.out.println("ERROR");
                         return;
                 }
 
                 positonX = 1;
-                positonY = 1;
+                positonY = 2;
+            }else if(stage[positonY][positonX] == "B"){
+                stageNumber --;
+                switch (stageNumber){
+                    case 1:
+                        if(seihai){
+                            stage = map.map6;
+                            positonX = 10;
+                            positonY = 4;
+                        }else{
+                            System.out.println("聖杯を入手して下さい");
+                            stageNumber ++;
+                            positonX = 1;
+                            positonY = 2;
+                        }
+                        break;
+                    case 2:
+                        stage = map.map2;
+                        positonX = 10;
+                        positonY = 4;
+                        break;
+                    case 3:
+                        stage = map.map3;
+                        positonX = 10;
+                        positonY = 4;
+                        break;
+                    case 4:
+                        stage = map.map4;
+                        positonX = 10;
+                        positonY = 4;
+                        break;
+                    case 5:
+                        stage = map.map5;
+                        positonX = 10;
+                        positonY = 4;
+                        break;
+                    case 6:
+                        stage = map.map6;
+                        positonX = 10;
+                        positonY = 4;
+//                    case 7:
+//                        stage = map.map7;
+//                        positonX = 10;
+//                        positonY = 4;
+//                        break;
+//                    case 8:
+//                        stage = map.map8;
+//                        positonX = 10;
+//                        positonY = 4;
+//                        break;
+//                    case 9:
+//                        stage = map.map9;
+//                        positonX = 10;
+//                        positonY = 4;
+//                        break;
+                    default:
+                        System.out.println("ERROR");
+                        return;
+                }
+            }else if(stage[positonY][positonX] == "S"){
+                System.out.println("聖杯を入手しました");
+                seihai = true;
+            }else if(stage[positonY][positonX] == "C"){
+                System.out.println("Game Clear");
             }
             creatMap(stage,positonY,positonX);
         }
@@ -139,6 +226,7 @@ public class Move {
             }
             System.out.println("");
         }
+        System.out.println("-：行き止まり　|：行き止まり　B：前の部屋に戻る　P：プレイヤー　G：次の部屋へ進む　S：聖杯（入手しなければクリアできません）");
     }
 
     public static Player levelUP(Player player){
