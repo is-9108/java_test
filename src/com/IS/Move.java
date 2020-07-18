@@ -12,14 +12,13 @@ public class Move {
         Player player = new Player();
         Battle battle = new Battle();
 
-        Ememy slime = new Ememy();
-        slime.name = "slime";
-        slime.hitPoint = 10;
-        slime.exp = 10;
-        slime.attack = 1;
+        Enemy enemy = new Enemy();
+        Slime slime = new Slime();
+        Knight knight = new Knight();
 
         while (true){
-            System.out.println("コマンドを入力:");
+            System.out.println("w：上へ移動　a：左へ移動　s：下へ移動　d：右へ移動　h：回復　y：ステータスを上げる　f：終了");
+            System.out.print("コマンドを入力:");
             String key = scanner.next();
             stage[positonY][positonX] = " ";
             Random random = new Random();
@@ -29,9 +28,14 @@ public class Move {
                     positonY--;
                     System.out.println("x:" + positonX);
                     System.out.println("y:" + positonY);
-                    if(ran < 0){
+                    if(ran < 2){
                         System.out.println("敵が現れた");
-                        player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        if(ran == 0){
+                            enemy = init(enemy,stageNumber,knight.hitPoint,knight.name,knight.attack,knight.exp);
+                        }else{
+                            enemy = init(enemy,stageNumber,slime.hitPoint,slime.name,slime.attack,slime.exp);;
+                        }
+                        player = battle.battle(player,enemy);
                     }else{
                         System.out.println(ran);
                     }
@@ -48,9 +52,14 @@ public class Move {
                     positonX --;
                     System.out.println("x:" + positonX);
                     System.out.println("y:" + positonY);
-                    if(ran < 0){
+                    if(ran < 2){
                         System.out.println("敵が現れた");
-                        player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        if(ran == 0){
+                            enemy = init(enemy,stageNumber,knight.hitPoint,knight.name,knight.attack,knight.exp);;
+                        }else{
+                            enemy = init(enemy,stageNumber,slime.hitPoint,slime.name,slime.attack,slime.exp);;
+                        }
+                        player = battle.battle(player,enemy);
                     }else{
                         System.out.println(ran);
                     }
@@ -67,9 +76,14 @@ public class Move {
                     positonY ++;
                     System.out.println("x:" + positonX);
                     System.out.println("y:" + positonY);
-                    if(ran < 0){
+                    if(ran < 2){
                         System.out.println("敵が現れた");
-                        player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        if(ran == 0){
+                            enemy = init(enemy,stageNumber,knight.hitPoint,knight.name,knight.attack,knight.exp);;
+                        }else{
+                            enemy = init(enemy,stageNumber,slime.hitPoint,slime.name,slime.attack,slime.exp);;
+                        }
+                        player = battle.battle(player,enemy);
                     }else{
                         System.out.println(ran);
                     }
@@ -86,9 +100,14 @@ public class Move {
                     positonX ++;
                     System.out.println("x:" + positonX);
                     System.out.println("y:" + positonY);
-                    if(ran < 0){
+                    if(ran < 2){
                         System.out.println("敵が現れた");
-                        player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        if(ran == 0){
+                            enemy = init(enemy,stageNumber,knight.hitPoint,knight.name,knight.attack,knight.exp);;
+                        }else{
+                            enemy = init(enemy,stageNumber,slime.hitPoint,slime.name,slime.attack,slime.exp);;
+                        }
+                        player = battle.battle(player,enemy);
                     }else{
                         System.out.println(ran);
                     }
@@ -101,7 +120,11 @@ public class Move {
                         positonX --;
                     }
                     break;
-                case "u":
+                case "h":
+                    System.out.println(player.heal + "回復した");
+                    System.out.println("前" + player.hitPoint);
+                    player = battle.heal(player);
+                    System.out.println("後" + player.hitPoint);
                     System.out.println(player.healCount);
                     break;
                 case "y":
@@ -131,18 +154,7 @@ public class Move {
                         break;
                     case 6:
                         stage = map.map6;
-//                    case 7:
-//                        stage = map.map7;
-//                        break;
-//                    case 8:
-//                        stage = map.map8;
-//                        break;
-//                    case 9:
-//                        stage = map.map9;
-//                        break;
-//                    case 10:
-//                        System.out.println("FIN");
-//                        return;
+                        break;
                     default:
                         System.out.println("ERROR");
                         return;
@@ -189,21 +201,7 @@ public class Move {
                         stage = map.map6;
                         positonX = 10;
                         positonY = 4;
-//                    case 7:
-//                        stage = map.map7;
-//                        positonX = 10;
-//                        positonY = 4;
-//                        break;
-//                    case 8:
-//                        stage = map.map8;
-//                        positonX = 10;
-//                        positonY = 4;
-//                        break;
-//                    case 9:
-//                        stage = map.map9;
-//                        positonX = 10;
-//                        positonY = 4;
-//                        break;
+                        break;
                     default:
                         System.out.println("ERROR");
                         return;
@@ -213,6 +211,8 @@ public class Move {
                 seihai = true;
             }else if(stage[positonY][positonX] == "C"){
                 System.out.println("Game Clear");
+            }else if(stage[positonY][positonX] == "E"){
+
             }
             creatMap(stage,positonY,positonX);
         }
@@ -228,6 +228,15 @@ public class Move {
         }
         System.out.println("-：行き止まり　|：行き止まり　B：前の部屋に戻る　P：プレイヤー　G：次の部屋へ進む　S：聖杯（入手しなければクリアできません）");
     }
+    
+    public static Enemy init(Enemy enemy,int stage,int hitPoint,String name,int attack,int exp){
+        enemy.name = name + String.valueOf(stage);
+        enemy.hitPoint = hitPoint * stage;
+        enemy.attack = attack * stage;
+        enemy.exp = exp + stage;
+        return enemy;
+    }
+
 
     public static Player levelUP(Player player){
         boolean a = true;
@@ -235,7 +244,7 @@ public class Move {
             System.out.println("現在の経験値：" + player.exp);
             System.out.println("--------------------");
             System.out.println("現在の攻撃力：" + player.attack);
-            System.out.println("現在の体力：" + player.hitPoint);
+            System.out.println("現在の体力：" + player.maxHp);
             System.out.println("現在の回復力：" + player.heal);
             System.out.println("--------------------");
             System.out.println("1:攻撃力を上げる(必要経験値：５)");

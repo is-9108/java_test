@@ -1,9 +1,9 @@
 package com.IS;
 
-public class Ememy {
+public class Enemy {
     String name;
     int hitPoint;
-    int exp;
     int attack;
+    int exp;
 }
 

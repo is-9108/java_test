@@ -6,30 +6,31 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Battle {
-    public static Player battle(Player player,int enemyHP,int enemyAttack,String enemyName,int enemyExp){
+    public static Player battle(Player player,Enemy enemy){
         Scanner scanner = new Scanner(System.in);
         String[] items = {};
-        System.out.println(enemyName + "が現れた");
+        System.out.println(enemy.name + "が現れた");
         while (player.hitPoint >= 0){
             System.out.println("--------------------");
             System.out.println(player.hitPoint + "/" + player.maxHp);
-            System.out.println("コマンドを入力:");
+            System.out.println("a：攻撃　h：回復");
+            System.out.print("コマンドを入力:");
             String key = scanner.next();
             switch (key){
                 case "a":
                     System.out.println("主人公の攻撃");
-                    enemyHP -= player.attack;
-                    if(enemyHP <= 0){
+                    enemy.hitPoint -= player.attack;
+                    if(enemy.hitPoint <= 0){
                         System.out.println("敵を倒した");
-                        System.out.println(enemyExp + "ポイント経験値を得た");
+                        System.out.println(enemy.exp + "ポイント経験値を得た");
                         System.out.println("回復薬を落とした");
                         player.healCount ++;
-                        player.exp += enemyExp;
+                        player.exp += enemy.exp;
                         return player;
-                    }else if(enemyHP > 0){
+                    }else if(enemy.hitPoint > 0){
                         System.out.println("敵の攻撃");
-                        System.out.println(enemyAttack + "ダメージ受けた");
-                        player.hitPoint -= enemyAttack;
+                        System.out.println(enemy.attack + "ダメージ受けた");
+                        player.hitPoint -= enemy.attack;
                         if(player.hitPoint <= 0){
                             System.out.println("Game over");
                             System.exit(0);
@@ -38,6 +39,13 @@ public class Battle {
                     break;
                 case "h":
                     player = heal(player);
+                    System.out.println("敵の攻撃");
+                    System.out.println(enemy.attack + "ダメージ受けた");
+                    player.hitPoint -= enemy.attack;
+                    if(player.hitPoint <= 0){
+                        System.out.println("Game over");
+                        System.exit(0);
+                    }
                     break;
             }
             System.out.println("--------------------");
