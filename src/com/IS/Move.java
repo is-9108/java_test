@@ -12,12 +12,11 @@ public class Move {
         Player player = new Player();
         Battle battle = new Battle();
 
-
         Ememy slime = new Ememy();
         slime.name = "slime";
         slime.hitPoint = 10;
         slime.exp = 10;
-        slime.attack = 10;
+        slime.attack = 1;
 
         while (true){
             System.out.println("コマンドを入力:");
@@ -30,7 +29,7 @@ public class Move {
                     positonY--;
                     if(ran < 3){
                         System.out.println("敵が現れた");
-                        player = battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -43,7 +42,7 @@ public class Move {
                     positonX --;
                     if(ran < 3){
                         System.out.println("敵が現れた");
-                        player = battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -56,7 +55,7 @@ public class Move {
                     positonY ++;
                     if(ran < 3){
                         System.out.println("敵が現れた");
-                        player = battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -69,7 +68,7 @@ public class Move {
                     positonX ++;
                     if(ran < 3){
                         System.out.println("敵が現れた");
-                        player = battle.battle(slime.hitPoint,slime.attack,slime.name,slime.exp);
+                        player = battle.battle(player,slime.hitPoint,slime.attack,slime.name,slime.exp);
                     }else{
                         System.out.println(ran);
                     }
@@ -77,6 +76,12 @@ public class Move {
                         System.out.println("範囲外です");
                         positonX --;
                     }
+                    break;
+                case "u":
+                    System.out.println(player.healCount);
+                    break;
+                case "y":
+                    player = levelUP(player);
                     break;
                 case "f":
                     System.exit(0);
@@ -134,5 +139,57 @@ public class Move {
             }
             System.out.println("");
         }
+    }
+
+    public static Player levelUP(Player player){
+        boolean a = true;
+        while (a){
+            System.out.println("現在の経験値：" + player.exp);
+            System.out.println("--------------------");
+            System.out.println("現在の攻撃力：" + player.attack);
+            System.out.println("現在の体力：" + player.hitPoint);
+            System.out.println("現在の回復力：" + player.heal);
+            System.out.println("--------------------");
+            System.out.println("1:攻撃力を上げる(必要経験値：５)");
+            System.out.println("2:HPを上げる(必要経験値：５)");
+            System.out.println("3:回復力を上げる(必要経験値：５)");
+            System.out.println("4:終了");
+            Scanner scanner = new Scanner(System.in);
+            int command = scanner.nextInt();
+            switch (command){
+                case 1:
+                    if(player.exp < 5){
+                        System.out.println("経験値が足りません");
+                    }else {
+                        player.attack += 5;
+                        player.exp -= 5;
+                    }
+                    break;
+                case 2:
+                    if(player.exp < 5){
+                        System.out.println("経験値が足りません");
+                    }else{
+                        player.hitPoint += 5;
+                        player.maxHp += 5;
+                        player.exp -= 5;
+                    }
+                    break;
+                case 3:
+                    if(player.exp < 5){
+                        System.out.println("経験値が足りません");
+                    }else {
+                        player.heal += 5;
+                        player.exp -= 5;
+                    }
+                    break;
+                case 4:
+                    a = false;
+                    break;
+                default:
+                    System.out.println("1~４を押して下さい");
+                    break;
+            }
+        }
+        return player;
     }
 }
