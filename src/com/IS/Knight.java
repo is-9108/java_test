@@ -1,8 +1,8 @@
 package com.IS;
 
-public class Knight extends Enemy {
+public class Knight{
     String name = "ナイトLv.";
-    int hitPoint = 19;
-    int attack = 9;
-    int exp = 3;
+    int hitPoint = 15;
+    int attack = 7;
+    int exp = 4;
 }

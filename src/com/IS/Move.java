@@ -17,6 +17,9 @@ public class Move {
         Slime slime = new Slime();
         Knight knight = new Knight();
 
+        FirstBoss firstBoss = new FirstBoss();
+        LastBoss lastBoss = new LastBoss();
+
         while (true){
             System.out.println("w：上へ移動　a：左へ移動　s：下へ移動　d：右へ移動　h：回復　y：ステータスを上げる　f：終了");
             System.out.print("コマンドを入力:");
@@ -121,15 +124,16 @@ public class Move {
                         positonX --;
                     }
                     break;
-                case "h":
-                    System.out.println(player.heal + "回復した");
-                    System.out.println("前" + player.hitPoint);
-                    player = battle.heal(player);
-                    System.out.println("後" + player.hitPoint);
-                    System.out.println(player.healCount);
-                    break;
                 case "y":
                     player = levelUP(player);
+                    break;
+                case "k":
+                    System.out.println("HP:" + player.hitPoint + "/" + player.maxHp);
+                    System.out.println("attack:" + player.attack);
+                    System.out.println("exp:" + player.exp);
+                    break;
+                case "h":
+                    player = battle.heal(player);
                     break;
                 case "f":
                     System.exit(0);
@@ -213,6 +217,11 @@ public class Move {
             }else if(stage[positonY][positonX] == "C"){
                 System.out.println("Game Clear");
             }else if(stage[positonY][positonX] == "E"){
+                if(stageNumber == 5){
+                    enemy = bossInit(enemy,firstBoss.hitPoint,firstBoss.name,firstBoss.attack);
+                }else if(stageNumber == 6){
+                    enemy = bossInit(enemy,lastBoss.hitPoint,lastBoss.name,lastBoss.attack);
+                }
 
             }
             creatMap(stage,positonY,positonX);
@@ -239,6 +248,12 @@ public class Move {
         return enemy;
     }
 
+    public static Enemy bossInit(Enemy enemy,int hitPoint,String name,int attack){
+        enemy.name = name;
+        enemy.hitPoint = hitPoint;
+        enemy.attack = attack;
+        return enemy;
+    }
 
     public static Player levelUP(Player player){
         boolean a = true;
@@ -246,12 +261,12 @@ public class Move {
             System.out.println("現在の経験値：" + player.exp);
             System.out.println("--------------------");
             System.out.println("現在の攻撃力：" + player.attack);
-            System.out.println("現在の体力：" + player.maxHp);
+            System.out.println("現在の体力：" + player.hitPoint + "/" + player.maxHp);
             System.out.println("現在の回復力：" + player.heal);
             System.out.println("--------------------");
-            System.out.println("1:攻撃力を上げる(必要経験値：５)");
-            System.out.println("2:HPを上げる(必要経験値：５)");
-            System.out.println("3:回復力を上げる(必要経験値：５)");
+            System.out.println("1:攻撃力を上げる +5 (必要経験値：５)");
+            System.out.println("2:HPを上げる +5 (必要経験値：５)");
+            System.out.println("3:回復力を上げる +5 (必要経験値：５)");
             System.out.println("4:終了");
             Scanner scanner = new Scanner(System.in);
             int command = scanner.nextInt();

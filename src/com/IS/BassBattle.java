@@ -1,14 +1,10 @@
 package com.IS;
 
-import java.util.*;
+import java.util.Scanner;
 
-public class Battle {
-    public static Player battle(Player player,Enemy enemy){
-        System.out.println("ボス戦では30%の確率で敵から「通常の２倍の攻撃」がきます");
-        System.out.println("また、10%の確率で敵の攻撃を回避する事ができます");
+public class BassBattle {
+    public static Player bossBattle(Player player,Enemy enemy){
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
-        int ran = random.nextInt(10);
         System.out.println(enemy.name + "が現れた");
         while (player.hitPoint >= 0){
             System.out.println("--------------------");
@@ -31,15 +27,8 @@ public class Battle {
                         return player;
                     }else if(enemy.hitPoint > 0){
                         System.out.println("敵の攻撃");
-                        if(ran < 2){
-                            System.out.println("敵の快進の攻撃");
-                            player.hitPoint -= enemy.attack * 2;
-                        }else if(ran == 10){
-                            System.out.println("敵の攻撃を回避した");
-                        }else{
-                            System.out.println(enemy.attack + "ダメージ受けた");
-                            player.hitPoint -= enemy.attack;
-                        }
+                        System.out.println(enemy.attack + "ダメージ受けた");
+                        player.hitPoint -= enemy.attack;
                         if(player.hitPoint <= 0){
                             System.out.println("Game over");
                             System.exit(0);
@@ -61,7 +50,6 @@ public class Battle {
         }
         return player;
     }
-
 
     public static Player heal(Player player){
         if(player.healCount == 0){
