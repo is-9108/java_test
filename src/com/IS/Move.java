@@ -12,6 +12,7 @@ public class Move {
         Maps map = new Maps();
         Player player = new Player();
         Battle battle = new Battle();
+        BossBattle bossBattle = new BossBattle();
 
         Enemy enemy = new Enemy();
         Slime slime = new Slime();
@@ -107,7 +108,8 @@ public class Move {
                     if(ran < 2){
                         System.out.println("敵が現れた");
                         if(ran == 0){
-                            enemy = init(enemy,stageNumber,knight.hitPoint,knight.name,knight.attack,knight.exp);;
+                            enemy = init(enemy,stageNumber,knight.hitPoint,knight.name,knight.attack,knight.exp);
+
                         }else{
                             enemy = init(enemy,stageNumber,slime.hitPoint,slime.name,slime.attack,slime.exp);;
                         }
@@ -222,7 +224,7 @@ public class Move {
                 }else if(stageNumber == 6){
                     enemy = bossInit(enemy,lastBoss.hitPoint,lastBoss.name,lastBoss.attack);
                 }
-
+                player = bossBattle.bossBattle(player,enemy);
             }
             creatMap(stage,positonY,positonX);
         }
@@ -237,7 +239,8 @@ public class Move {
             }
             System.out.println("");
         }
-        System.out.println("-：行き止まり　|：行き止まり　B：前の部屋に戻る　P：プレイヤー　G：次の部屋へ進む　S：聖杯（入手しなければクリアできません）");
+        System.out.println("-：行き止まり　|：行き止まり　B：前の部屋に戻る　P：プレイヤー　" +
+                "G：次の部屋へ進む　S：聖杯（入手しなければクリアできません）");
     }
     
     public static Enemy init(Enemy enemy,int stage,int hitPoint,String name,int attack,int exp){

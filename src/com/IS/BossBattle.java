@@ -2,7 +2,7 @@ package com.IS;
 
 import java.util.Scanner;
 
-public class BassBattle {
+public class BossBattle {
     public static Player bossBattle(Player player,Enemy enemy){
         Scanner scanner = new Scanner(System.in);
         System.out.println(enemy.name + "が現れた");
