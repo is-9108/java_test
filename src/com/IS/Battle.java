@@ -4,8 +4,6 @@ import java.util.*;
 
 public class Battle {
     public static Player battle(Player player,Enemy enemy){
-        System.out.println("ボス戦では30%の確率で敵から「通常の２倍の攻撃」がきます");
-        System.out.println("また、10%の確率で敵の攻撃を回避する事ができます");
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         int ran = random.nextInt(10);

@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class BossBattle {
     public static Player bossBattle(Player player,Enemy enemy){
+        System.out.println("ボス戦では30%の確率で敵から「通常の２倍の攻撃」がきます");
+        System.out.println("また、10%の確率で敵の攻撃を回避する事ができます");
         Scanner scanner = new Scanner(System.in);
         System.out.println(enemy.name + "が現れた");
         while (player.hitPoint >= 0){

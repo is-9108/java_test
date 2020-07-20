@@ -218,6 +218,7 @@ public class Move {
                 seihai = true;
             }else if(stage[positonY][positonX] == "C"){
                 System.out.println("Game Clear");
+                System.exit(0);
             }else if(stage[positonY][positonX] == "E"){
                 if(stageNumber == 5){
                     enemy = bossInit(enemy,firstBoss.hitPoint,firstBoss.name,firstBoss.attack);
