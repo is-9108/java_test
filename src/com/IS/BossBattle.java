@@ -1,12 +1,16 @@
 package com.IS;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class BossBattle {
     public static Player bossBattle(Player player,Enemy enemy){
+        Items items = new Items();
         System.out.println("ボス戦では30%の確率で敵から「通常の２倍の攻撃」がきます");
         System.out.println("また、10%の確率で敵の攻撃を回避する事ができます");
         Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        int ran = random.nextInt(10);
         System.out.println(enemy.name + "が現れた");
         while (player.hitPoint >= 0){
             System.out.println("--------------------");
@@ -24,13 +28,30 @@ public class BossBattle {
                         System.out.println("敵を倒した");
                         System.out.println(enemy.exp + "ポイント経験値を得た");
                         System.out.println("回復薬を落とした");
-                        player.healCount ++;
-                        player.exp += enemy.exp;
+                        if(enemy.name == "魔剣士"){
+                            System.out.println(enemy.name + "は魔剣を落とした(攻撃力＋" + items.masicSword + ")");
+                            System.out.println("魔剣を装備しますか？(y/n)");
+                            String weapon = scanner.next();
+                            if(weapon == "y"){
+                                System.out.println("魔剣を装備した");
+                                player.weaponPoint = items.masicSword;
+                            }else if(weapon == "n"){
+                                System.out.println("魔剣を捨てた");
+                            }else {
+                                System.out.println("yかnの入力して下さい");
+                            }
+                        }
                         return player;
                     }else if(enemy.hitPoint > 0){
-                        System.out.println("敵の攻撃");
-                        System.out.println(enemy.attack + "ダメージ受けた");
-                        player.hitPoint -= enemy.attack;
+                        if(ran < 2){
+                            System.out.println("敵の快進の攻撃");
+                            player.hitPoint -= enemy.attack * 2;
+                        }else if(ran == 10){
+                            System.out.println("敵の攻撃を回避した");
+                        }else{
+                            System.out.println(enemy.attack + "ダメージ受けた");
+                            player.hitPoint -= enemy.attack;
+                        }
                         if(player.hitPoint <= 0){
                             System.out.println("Game over");
                             System.exit(0);

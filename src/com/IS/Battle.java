@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Battle {
     public static Player battle(Player player,Enemy enemy){
+        Items items = new Items();
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         int ran = random.nextInt(10);
@@ -18,26 +19,50 @@ public class Battle {
             switch (key){
                 case "a":
                     System.out.println("主人公の攻撃");
-                    enemy.hitPoint -= player.attack;
-                    System.out.println(player.attack + "ダメージを与えた");
+                    enemy.hitPoint -= player.attack + player.weaponPoint;
+                    System.out.println(player.attack + player.weaponPoint + "ダメージを与えた");
                     if(enemy.hitPoint <= 0){
                         System.out.println("敵を倒した");
                         System.out.println(enemy.exp + "ポイント経験値を得た");
-                        System.out.println("回復薬を落とした");
-                        player.healCount ++;
+                        if(enemy.name == "スライムLv."){
+                            if(ran < 5){
+                                System.out.println("回復薬を落とした");
+                                player.healCount ++;
+                            }else if(ran == 10) {
+                                System.out.println("木の棒を落とした(攻撃力＋" + items.tree + ")");
+                                System.out.println("装備しますか?(y/n)");
+                                String weapon = scanner.next();
+                                if (weapon == "y") {
+                                    player.weaponPoint = items.tree;
+                                } else if (weapon == "n") {
+                                    System.out.println("木の棒を捨てた");
+                                } else {
+                                    System.out.println("yかnを押して下さい");
+                                }
+                            }
+                        }else if(enemy.name == "ナイトLv."){
+                            if(ran < 5){
+                                System.out.println("回復薬を落とした");
+                                player.healCount ++;
+                            }else if(ran == 10) {
+                                System.out.println("剣を落とした(攻撃力＋" + items.sword + ")");
+                                System.out.println("装備しますか?(y/n)");
+                                String weapon = scanner.next();
+                                if (weapon == "y") {
+                                    player.weaponPoint = items.sword;
+                                } else if (weapon == "n") {
+                                    System.out.println("剣を捨てた");
+                                } else {
+                                    System.out.println("yかnを入力して下さい");
+                                }
+                            }
+                        }
                         player.exp += enemy.exp;
                         return player;
                     }else if(enemy.hitPoint > 0){
                         System.out.println("敵の攻撃");
-                        if(ran < 2){
-                            System.out.println("敵の快進の攻撃");
-                            player.hitPoint -= enemy.attack * 2;
-                        }else if(ran == 10){
-                            System.out.println("敵の攻撃を回避した");
-                        }else{
-                            System.out.println(enemy.attack + "ダメージ受けた");
-                            player.hitPoint -= enemy.attack;
-                        }
+                        System.out.println(enemy.attack + "ダメージ受けた");
+                        player.hitPoint -= enemy.attack;
                         if(player.hitPoint <= 0){
                             System.out.println("Game over");
                             System.exit(0);

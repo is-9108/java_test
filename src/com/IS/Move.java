@@ -264,7 +264,7 @@ public class Move {
         while (a){
             System.out.println("現在の経験値：" + player.exp);
             System.out.println("--------------------");
-            System.out.println("現在の攻撃力：" + player.attack);
+            System.out.println("現在の攻撃力 (装備の攻撃力補正)：" + player.attack + "(+" + player.weaponPoint + ")");
             System.out.println("現在の体力：" + player.hitPoint + "/" + player.maxHp);
             System.out.println("現在の回復力：" + player.heal);
             System.out.println("--------------------");
