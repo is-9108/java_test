@@ -136,6 +136,7 @@ public class Move {
                     break;
                 case "h":
                     player = battle.heal(player);
+                    System.out.println("残りの回復薬の数は" + player.healCount + "です");
                     break;
                 case "f":
                     System.exit(0);
