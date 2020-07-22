@@ -58,7 +58,7 @@ public class Battle {
                                     player.weaponPoint = items.tree;
                                     break;
                                 case "n":
-                                    System.out.println("剣sを捨てた");
+                                    System.out.println("剣を捨てた");
                                     break;
                                 default:
                                     System.out.println("yかnを押して下さい");

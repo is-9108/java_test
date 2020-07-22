@@ -274,9 +274,9 @@ public class Move {
             System.out.println("3:回復力を上げる +5 (必要経験値：５)");
             System.out.println("4:終了");
             Scanner scanner = new Scanner(System.in);
-            int command = scanner.nextInt();
+            String command = scanner.next();
             switch (command){
-                case 1:
+                case "1":
                     if(player.exp < 5){
                         System.out.println("経験値が足りません");
                     }else {
@@ -284,7 +284,7 @@ public class Move {
                         player.exp -= 5;
                     }
                     break;
-                case 2:
+                case "2":
                     if(player.exp < 5){
                         System.out.println("経験値が足りません");
                     }else{
@@ -293,7 +293,7 @@ public class Move {
                         player.exp -= 5;
                     }
                     break;
-                case 3:
+                case "3":
                     if(player.exp < 5){
                         System.out.println("経験値が足りません");
                     }else {
@@ -301,7 +301,7 @@ public class Move {
                         player.exp -= 5;
                     }
                     break;
-                case 4:
+                case "4":
                     a = false;
                     break;
                 default:
