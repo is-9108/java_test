@@ -5,12 +5,18 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Alphabet alphabet = new Alphabet();
         Maps map = new Maps();
         Move move = new Move();
         int positionX = 1;
         int positionY = 1;
         String[][] stage = map.map1;
         stage[positionY][positionX] = "P";
+        alphabet.holyGrailQuest();
+        System.out.print("                                                 ");
+        System.out.println("-------ENTER KEY PRESS-------");
+        scanner.nextLine();
         start();
         for(int i = 0; i < 4; i++){
             System.out.println("");
@@ -26,111 +32,6 @@ public class Main {
         }
     }
 
-    public static void gameIcon(){
-        String[] H = {
-                "■   ■",
-                "■   ■",
-                "■■■■■",
-                "■■■■■",
-                "■   ■", 
-                "■   ■"
-        };
-        String[] O = {
-          " ■■■ ",
-          "■■ ■■",
-          "■   ■",
-          "■   ■",
-          "■■ ■■",
-          " ■■■ "      
-        };
-        String[] L = {
-                "■    ",
-                "■    ",
-                "■    ",
-                "■    ",
-                "■    ",
-                "■■■■■"
-        };
-        String[] Y = {
-                "■   ■",
-                "■   ■",
-                "■■ ■■",
-                " ■■■ ",
-                "  ■  ",
-                "  ■  "
-        } ;
-        String[] G = {
-                "■■■■■",
-                "■   ■",
-                "■    ",
-                "■ ■■■",
-                "■   ■",
-                "■■■■■"
-        };
-        String[] R = {
-                "■■■■■",
-                "■   ■",
-                "■■■■■",
-                "■■   ",
-                "■ ■■ ",
-                "■  ■■"
-        };
-        String[] A = {
-                " ■■■ ",
-                "■■ ■■",
-                "■   ■",
-                "■■■■■",
-                "■   ■",
-                "■   ■"
-        };
-        String[] I = {
-                " ■■■ ",
-                "  ■  ",
-                "  ■  ",
-                "  ■  ",
-                " ■■■ "
-        };
-        String[] Q = {
-                " ■■■ ",
-                "■■ ■■",
-                "■   ■",
-                "■ ■ ■",
-                "■■ ■ ",
-                " ■■ ■"
-        };
-        String[] U = {
-                "■   ■",
-                "■   ■",
-                "■   ■",
-                "■■ ■■",
-                " ■■■ "
-        };
-        String[] E = {
-                "■■■■■",
-                "■    ",
-                "■■■■ ",
-                "■■■■ ",
-                "■    ",
-                "■■■■■"
-        };
-        String[] S = {
-                "■■■■■",
-                "■   ■",
-                "■■■  ",
-                "  ■■■",
-                "■   ■",
-                "■■■■■"
-                
-        };
-        String[] T = {
-                "■■■■■",
-                "■ ■ ■",
-                "  ■  ",
-                "  ■  ",
-                "  ■  ",
-                "  ■  "
-        };
-    }
     public static void start(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("主「先生、？？は助かるんですか？」");
@@ -160,5 +61,4 @@ public class Main {
         scanner.nextLine();
         System.out.println("アレックス「お気をつけて」");
     }
-
 }
