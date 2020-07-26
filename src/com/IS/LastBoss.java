@@ -1,7 +1,7 @@
 package com.IS;
 
 public class LastBoss {
-    String name = "魔王";
+    String name = "アレックス";
     int hitPoint = 900;
     int attack = 18;
 }

@@ -218,6 +218,11 @@ public class Move {
                 System.out.println("聖杯を入手しました");
                 seihai = true;
             }else if(stage[positonY][positonX] == "C"){
+                System.out.println("こうして聖杯を持って帰り仲間の病気を治した");
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println();
                 System.out.println("Game Clear");
                 System.exit(0);
             }else if(stage[positonY][positonX] == "E"){
