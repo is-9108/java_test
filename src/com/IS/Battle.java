@@ -8,6 +8,7 @@ public class Battle {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         int ran = random.nextInt(10);
+        boolean com = true;
         System.out.println(enemy.name + "が現れた");
         while (player.hitPoint >= 0){
             System.out.println("--------------------");
@@ -33,19 +34,24 @@ public class Battle {
                             System.out.println("---------------------");
                             System.out.println("木の棒を落とした(攻撃力＋" + items.tree + ")");
                             System.out.println("装備しますか?(y/n)");
-                            String weapon = scanner.next();
-                            switch (weapon) {
-                                case "y":
-                                    System.out.println("木の棒を装備した");
-                                    player.weaponPoint = items.tree;
-                                    break;
-                                case "n":
-                                    System.out.println("木の棒を捨てた");
-                                    break;
-                                default:
-                                    System.out.println("yかnを押して下さい");
-                                    break;
+                            while (com){
+                                String weapon = scanner.next();
+                                switch (weapon) {
+                                    case "y":
+                                        System.out.println("木の棒を装備した");
+                                        player.weaponPoint = items.tree;
+                                        com = false;
+                                        break;
+                                    case "n":
+                                        System.out.println("木の棒を捨てた");
+                                        com = false;
+                                        break;
+                                    default:
+                                        System.out.println("yかnを押して下さい");
+                                        break;
+                                }
                             }
+
                             System.out.println("---------------------");
                         }else if(ran ==10) {
                             System.out.println("---------------------");

@@ -19,6 +19,7 @@ public class BossBattle {
             System.out.println("a：攻撃　h：回復");
             System.out.print("コマンドを入力:");
             String key = scanner.next();
+            boolean com = true;
             switch (key){
                 case "a":
                     System.out.println("主人公の攻撃");
@@ -28,17 +29,25 @@ public class BossBattle {
                         System.out.println("敵を倒した");
                         System.out.println(enemy.exp + "ポイント経験値を得た");
                         System.out.println("回復薬を落とした");
-                        if(enemy.name == "魔剣士"){
+                        if(enemy.name == "デュラハン"){
                             System.out.println(enemy.name + "は魔剣を落とした(攻撃力＋" + items.masicSword + ")");
                             System.out.println("魔剣を装備しますか？(y/n)");
-                            String weapon = scanner.next();
-                            if(weapon == "y"){
-                                System.out.println("魔剣を装備した");
-                                player.weaponPoint = items.masicSword;
-                            }else if(weapon == "n"){
-                                System.out.println("魔剣を捨てた");
-                            }else {
-                                System.out.println("yかnの入力して下さい");
+                            while(com){
+                                String weapon = scanner.next();
+                                switch (weapon){
+                                    case "y":
+                                        System.out.println("魔剣を装備した");
+                                        player.weaponPoint = items.masicSword;
+                                        com = false;
+                                        break;
+                                    case "n":
+                                        System.out.println("魔剣を捨てた");
+                                        com = false;
+                                        break;
+                                    default:
+                                        System.out.println("yかnの入力して下さい");
+                                        break;
+                                }
                             }
                         }
                         return player;

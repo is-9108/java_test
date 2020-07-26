@@ -176,6 +176,7 @@ public class Move {
                     case 1:
                         if(seihai){
                             stage = map.map6;
+                            stageNumber = 6;
                             positonX = 10;
                             positonY = 4;
                         }else{
@@ -231,7 +232,7 @@ public class Move {
                 }else if(stageNumber == 6){
                     System.out.println("案内人「よく戻ってこれましたね！」");
                     scanner.nextLine();
-                    System.out.println("案内人「じゃあその聖杯を渡してもらおうか！！」");
+                    System.out.println("案内人「じゃあその聖杯を渡して貰おうか！！」");
                     scanner.nextLine();
                     enemy = bossInit(enemy,lastBoss.hitPoint,lastBoss.name,lastBoss.attack);
                 }
