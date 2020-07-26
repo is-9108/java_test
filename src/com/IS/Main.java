@@ -49,16 +49,16 @@ public class Main {
         scanner.nextLine();
         System.out.println("主「はい。今まで一緒に旅してきた相棒なので！」");
         scanner.nextLine();
-        System.out.println("私が止める権利はありませんね。御武運を");
+        System.out.println("医「私が止める権利はありませんね。御武運を」");
         scanner.nextLine();
         for(int i = 0; i < 4; i++) {
             System.out.println("・");
         }
         System.out.println("");
-        System.out.println("アレックス「お客さん、俺は何人もの人をここへ運んでいますけど本当に行くんですか？」");
+        System.out.println("案内人「お客さん、俺は何人もの人をここへ運んでいますけど本当に行くんですか？」");
         scanner.nextLine();
         System.out.println("主「ああ、行ってくる。」");
         scanner.nextLine();
-        System.out.println("アレックス「お気をつけて」");
+        System.out.println("案内人「お気をつけて」");
     }
 }

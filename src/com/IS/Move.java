@@ -229,6 +229,10 @@ public class Move {
                 if(stageNumber == 5){
                     enemy = bossInit(enemy,firstBoss.hitPoint,firstBoss.name,firstBoss.attack);
                 }else if(stageNumber == 6){
+                    System.out.println("案内人「よく戻ってこれましたね！」");
+                    scanner.nextLine();
+                    System.out.println("案内人「じゃあその聖杯を渡してもらおうか！！」");
+                    scanner.nextLine();
                     enemy = bossInit(enemy,lastBoss.hitPoint,lastBoss.name,lastBoss.attack);
                 }
                 player = bossBattle.bossBattle(player,enemy);
